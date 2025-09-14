@@ -52,12 +52,13 @@ export default function Contact() {
       <div className="contact-container">
         <div className="contact-info">
           <h1>Contact Us</h1>
-          <p>Let’s build a cleaner future together. Whether you're an OEM, recycler, or community member—send us a message and we'll connect.</p>
+          <h3>Have a question? </h3>
+          <p>Feel free to give us a call, or send a message.</p>
 
           <div className="contact-details">
             <div className="contact-item">
               <span className="contact-icon">✉️</span>
-              <span>info@akirecycling.com</span>
+              <span>kamran@khosravi.com</span>
             </div>
             <div className="contact-item">
               <span className="contact-icon">📍</span>

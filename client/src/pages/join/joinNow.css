@@ -1,0 +1,158 @@
+:root{
+  --navy:#0f2b5e;
+  --navy-2:#123a83;
+  --blue:#295887;
+  --text:#203354;
+  --muted:#6e83a3;
+  --card:#ffffff;
+  --shadow: 0 18px 40px rgba(16,34,60,.12);
+  --radius: 16px;
+}
+
+/* page wrapper */
+.jn { background: #0b1e44 radial-gradient(1200px 600px at 50% -200px, #14346c 0%, transparent 60%) fixed; }
+
+/* ============ HERO ============ */
+.jn-hero{
+  padding: 40px 20px 28px;
+  color: #eaf2ff;
+  text-align: center;
+}
+.jn-hero h1{
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: #f2f6ff;
+  margin: 0 0 22px;
+  font-weight: 700;
+}
+
+/* Benefits grid */
+.jn-benefits{
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 20px;
+}
+.jn-benefit-card{
+  position: relative;
+  min-height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: linear-gradient(135deg, #1a3f7f, #b5ccf3);
+}
+.jn-benefit-card::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image: var(--bg);   /* ⬅️ uses value from JSX */
+  background-size: cover;
+  background-position: center;
+  opacity:.45;
+}
+/* .img-1::before{ background-image: url("/assets/join/benefit1.jpg"); }
+.img-2::before{ background-image: url("/assets/join/benefit2.jpg"); }
+.img-3::before{ background-image: url("/assets/join/benefit3.jpg"); } */
+
+/* if images missing, still looks good */
+.jn-benefit-body{
+  position: relative;
+  z-index: 1;
+  color: #f6fbff;
+  padding: 16px 18px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+.jn-benefit-body h3{ margin: 2px 0 6px; font-size: 1.1rem; }
+.jn-benefit-body p{ margin: 0; color:#d7e6ff; }
+
+/* ============ CTA STRIP ============ */
+.jn-cta{
+  background: linear-gradient(90deg, var(--blue), #3a86ff);
+  margin: 26px 0 6px;
+  padding: 18px 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.jn-cta h2{
+  margin:0; color:#fff;
+  font-weight: 800;
+  letter-spacing:.2px;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+}
+
+/* ============ TWO OPTION CARDS ============ */
+.jn-options{
+  max-width: 1150px;
+  margin: 28px auto 50px;
+  padding: 0 20px 34px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 24px;
+}
+
+.jn-card{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 20px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.jn-card::after{
+  /* faint pattern */
+  content:"";
+  position:absolute; inset:-20%;
+  background: radial-gradient(180px 80px at 20% 10%, rgba(18,58,131,.12), transparent 50%),
+              radial-gradient(160px 70px at 85% 80%, rgba(46,124,246,.12), transparent 55%);
+  pointer-events:none;
+}
+
+.jn-card-head{
+  display:flex; align-items:center; gap:10px;
+}
+.jn-badge{
+  display:inline-block;
+  font-size:.75rem;
+  color:#0b2f7a;
+  background:#e7f0ff;
+  border:1px solid #cfe0ff;
+  padding:4px 7px; border-radius:8px;
+  font-weight:700;
+}
+.jn-icon{ font-size: 1.1rem; }
+.jn-card h3{ margin:0; color: var(--navy-2); font-size: 1.25rem; }
+
+.jn-divider{
+  border:0; height:1px; background: #e6edf7;
+  margin: 12px 0 14px;
+}
+
+.jn-lead{ color:#415a83; line-height:1.6; margin:0 0 10px; }
+
+.jn-list{
+  margin: 0 0 14px 18px; color:#415a83;
+}
+.jn-list li{ margin: 4px 0; }
+
+/* actions */
+.jn-actions{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.btn-primary{
+  background: var(--navy-2);
+  color:#fff;
+  text-decoration:none;
+  border:0; padding:10px 16px;
+  border-radius: 10px;
+  font-weight:700;
+  box-shadow: 0 10px 22px rgba(18,58,131,.18);
+}
+.btn-primary:hover{ filter: brightness(1.06); }
+.btn-link{
+  color: var(--navy-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* responsive */
+@media (max-width: 960px){
+  .jn-benefits{ grid-template-columns:1fr; }
+  .jn-options{ grid-template-columns:1fr; }
+}

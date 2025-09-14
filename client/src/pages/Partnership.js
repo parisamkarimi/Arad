@@ -67,10 +67,9 @@ export default function Partnership() {
   return (
     <section className="partnership-section">
       <div className="form-container">
-        <h1>Partner with AKI Battery Recycling</h1>
+        <h1>Partner with Arad Company</h1>
         <p>
-          We're always open to collaborating with organizations that share our
-          commitment to sustainability.
+          We're always open to collaborating with new partner.
         </p>
 
         <form onSubmit={handleSubmit} className="partnership-form">
@@ -95,18 +94,11 @@ export default function Partnership() {
           </div>
 
           <div className="form-group">
-            <label>Industry</label>
+            <label>State</label>
             <select name="industry">
-              <option>Battery Manufacturer</option>
-              <option>Automotive OEM</option>
-              <option>Vehicle Dismantler / Recycler</option>
-              <option>Automotive Dealer / Service Centre</option>
-              <option>Retailer / Electronics Store</option>
-              <option>Municipality / Public Works</option>
-              <option>School / Academic Institution</option>
-              <option>Logistics or Waste Transport Provider</option>
-              <option>Recycling Company / Processor</option>
-              <option>Other</option>
+              <option>Nevada</option>
+              <option>California</option>
+             
             </select>
           </div>
 
@@ -118,10 +110,10 @@ export default function Partnership() {
           <div className="form-group">
             <label>Partnership Type</label>
             <select name="partnershipType">
-              <option>Recycling Collaboration</option>
-              <option>Battery Collection Site</option>
-              <option>E-Waste Drop-Off</option>
-              <option>Educational Outreach</option>
+              <option>Current Member</option>
+              <option>Non MLS</option>
+              <option>New License</option>
+              <option>transferring License</option>
               <option>Other</option>
             </select>
           </div>
