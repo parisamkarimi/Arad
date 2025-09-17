@@ -1,36 +1,57 @@
 import React from "react";
-import "./members.css";
+import { NavLink } from "react-router-dom";
+import "./licenseStatus.css";
 
 export default function LicenseStatus() {
+  const NV_LOOKUP   = "https://red.prod.secure.nv.gov/Lookup/LicenseLookup.aspx";
+  const DASHBOARD   = "https://your-dashboard-url.com"; // change to your real dashboard
+
   return (
-    <div className="mb-wrap">
-      <section className="mb-hero">
-        <h1>License Status</h1>
-        <p>Verify your active status and keep your information up to date with the state.</p>
+    <main className="ls" style={{ "--ls-hero": 'url("/assets/members/hero.jpg")' }}>
+      {/* HERO */}
+      <section className="ls-hero">
+        <div className="container">
+          <div className="ls-breadcrumb">
+            <span>Home</span> <span className="sep">›</span> <span>License Status</span>
+          </div>
+          <h1>License Status</h1>
+        </div>
       </section>
 
-      <section className="mb-grid">
-        <article className="mb-card">
-          <h2>Check & Maintain</h2>
-          <ul>
-            <li>Confirm your license is active and in good standing via the state licensing portal.</li>
-            <li>Update contact info (address, email, phone) when it changes.</li>
-            <li>Track education/renewal deadlines to avoid lapses.</li>
-          </ul>
+      {/* CONTENT */}
+      <section className="ls-content">
+        <div className="container">
+          <article className="ls-card">
+            <ul className="ls-list">
+              <li>
+                <a className="ls-link" href={NV_LOOKUP} target="_blank" rel="noreferrer">
+                  Click here to check the legal status of your license
+                </a>
+                <ul className="ls-sub">
+                  <li>
+                    View license details to confirm status and that it’s hanging under ARAD (your brokerage) name.
+                  </li>
+                </ul>
+              </li>
 
-          <div className="mb-callout">
-            Need help finding your record or renewal window? Submit a request and we’ll point you to the right page.
-          </div>
-        </article>
-
-        <aside className="mb-side">
-          <div className="mb-card">
-            <h2>Need Assistance?</h2>
-            <p>We can help locate your state record and note upcoming deadlines.</p>
-            <a href="/members/request-form" className="btn-primary">Request Help</a>
-          </div>
-        </aside>
+              <li className="ls-block">
+                <a className="ls-link" href={DASHBOARD} target="_blank" rel="noreferrer">
+                  Click here to be taken to your licensee dashboard
+                </a>
+                <ul className="ls-sub">
+                  <li>Use the dashboard to access forms and broker information documents.</li>
+                  <li>
+                    <NavLink className="ls-link" to="/contact">
+                      Contact the brokerage with additional questions
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </article>
+        </div>
       </section>
-    </div>
+    </main>
   );
 }
+

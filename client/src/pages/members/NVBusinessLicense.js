@@ -1,39 +1,82 @@
 import React from "react";
-import "./members.css";
+import "./nvBusiness.css";
 
-export default function NVBusinessLicense() {
+export default function NvBusinessLicense() {
+  // Edit these URLs if you want to point to exact pages later
+  const EMAIL = "mailto:BLCompliance@sos.nv.gov";
+  const SILVERFLUME = "https://www.nvsos.gov/silverflume";
+  const SOS_BUSINESS_LICENSING = "https://www.nvsos.gov";
+  const NRS_CH76 = "https://www.leg.state.nv.us/NRS/NRS-076.html";
+  const NRS_DEFINITIONS = "https://www.leg.state.nv.us/NRS/NRS-076.html#NRS076Sec020";
+  const NRS_EXEMPTIONS  = "https://www.leg.state.nv.us/NRS/NRS-076.html#NRS076Sec100";
+
   return (
-    <div className="mb-wrap">
-      <section className="mb-hero">
-        <h1>Nevada Business License</h1>
-        <p>Understand the basics of obtaining and renewing your Nevada business license.</p>
-      </section>
-
-      <section className="mb-grid">
-        <article className="mb-card">
-          <h2>Overview</h2>
-          <ul>
-            <li>Many agents maintain a Nevada business license with the Secretary of State.</li>
-            <li>Keep your entity name/address consistent with your real estate records.</li>
-            <li>Renew on time and keep certificates handy for brokerage or taxation needs.</li>
-          </ul>
-
-          <h2>Checklist</h2>
-          <ul>
-            <li>Confirm entity type and registered agent</li>
-            <li>Renew business license before expiration</li>
-            <li>Save confirmation/receipts for your records</li>
-          </ul>
-        </article>
-
-        <aside className="mb-side">
-          <div className="mb-card">
-            <h2>Questions?</h2>
-            <p>We can share general guidance and where to complete renewals online.</p>
-            <a href="/members/request-form" className="btn-primary">Ask a Question</a>
+    <main className="nvb" style={{ "--nvb-hero": 'url("/assets/members/hero.jpg")' }}>
+      {/* HERO */}
+      <section className="nvb-hero">
+        <div className="container">
+          <div className="nvb-breadcrumb">
+            <span>Home</span> <span className="sep">›</span> <span>Nevada Business License</span>
           </div>
-        </aside>
+          <h1>Nevada Business License</h1>
+        </div>
       </section>
-    </div>
+
+      {/* CONTENT */}
+      <section className="nvb-content">
+        <div className="container">
+          <article className="nvb-card">
+            <h3>State of Nevada Business Licensing</h3>
+
+            <p>
+              Nevada real estate licensees must maintain a Nevada Business License or a valid exemption.
+            </p>
+
+            <div className="nvb-notice">
+              <strong>NOTICE:</strong> ARAD and its staff are not legal representatives of the Nevada
+              Secretary of State and cannot provide legal advice. Any information provided here reflects
+              common filing practices from other licensees. For special situations or detailed guidance,
+              please contact the Secretary of State’s compliance team:{" "}
+              <a className="nvb-link" href={EMAIL}>BLCompliance@sos.nv.gov</a>.
+            </div>
+
+            <ul className="nvb-bullets">
+              <li>
+                Most real estate licensees file as a <strong>sole proprietor</strong> for either a business
+                license or exemption. Choose the option that best fits your business practices and income.
+                <ul>
+                  <li>
+                    See Nevada’s <a className="nvb-link" href={NRS_DEFINITIONS} target="_blank" rel="noreferrer">
+                    definitions</a> and{" "}
+                    <a className="nvb-link" href={NRS_EXEMPTIONS} target="_blank" rel="noreferrer">
+                    exemptions</a>.
+                  </li>
+                  <li>
+                    Read <a className="nvb-link" href={NRS_CH76} target="_blank" rel="noreferrer">
+                    Chapter 76</a> for business-license regulations.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <div className="nvb-links">
+              <a className="nvb-cta" href={SOS_BUSINESS_LICENSING} target="_blank" rel="noreferrer">
+                Secretary of State Business Licensing – forms & FAQs
+              </a>
+              <a className="nvb-cta" href={SILVERFLUME} target="_blank" rel="noreferrer">
+                File online through SilverFlume
+              </a>
+            </div>
+
+            <p className="nvb-disclaimer">
+              ARAD does <strong>not</strong> require a copy of your business license or exemption for our
+              internal file. It is the sole responsibility of the licensee to maintain legal authority to
+              operate as an independent contractor in the State of Nevada.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
   );
 }
+

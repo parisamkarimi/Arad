@@ -1,43 +1,170 @@
-import React from "react";
-import "./members.css";
+import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+import "./referral.css";
 
 export default function Referral() {
+  const navigate = useNavigate();
+
+  const [f, setF] = useState({
+    refName: "",
+    refPhone: "",
+    refLicense: "",
+    clientName: "",
+    clientPhone: "",
+    notes: "",
+  });
+  const onChange = (e) => setF({ ...f, [e.target.name]: e.target.value });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    navigate("/contact-acknowledgement", { state: { type: "Referral" } });
+  };
+
   return (
-    <div className="mb-wrap">
-      <section className="mb-hero">
-        <h1>Referral</h1>
-        <p>Submit written referrals and keep earning—ARAD documents procuring cause and tracks through closing.</p>
+    <main
+      className="cm"
+      style={{ "--cm-hero": 'url("/assets/members/hero.jpg")' }}
+    >
+      {/* HERO */}
+      <section className="cm-hero">
+        <div className="container">
+          <h1>Current Members</h1>
+        </div>
       </section>
 
-      <section className="mb-grid">
-        <article className="mb-card">
-          <h2>How It Works</h2>
-          <ol>
-            <li>Send a written referral (we’ll provide the template via DocuSign).</li>
-            <li>We acknowledge procuring cause and introduce a partner licensee if needed.</li>
-            <li>Deal status is tracked; payout issued via eCheck after closing.</li>
-          </ol>
+      {/* REFERRALS */}
+      <section className="cm-referrals">
+        <div className="container">
+          <div className="cm-grid">
+            {/* Left copy */}
+            <article className="cm-card cm-copy">
+              <h2>Referrals</h2>
+              <p>
+                Licensees participating in our referral network are encouraged to use the
+                brokerage referral form to note themselves as the <strong>procuring cause</strong> for
+                the potential real estate client.
+              </p>
+              <p>
+                Or send the referral by email including the info on the right if you’re unable to
+                complete the form:<br />
+                <a className="cm-link" href="mailto:referrals@your-domain.com">
+                  referrals@your-domain.com
+                </a>
+              </p>
+              <p className="cm-footnote">
+                <em>
+                  *Submitting the brokerage referral form verifies procuring cause for the
+                  referring licensee. A partner licensee will acknowledge and contact the client.
+                </em>
+              </p>
+            </article>
 
-          <div className="mb-callout">
-            Best practice: include client contact info + a brief handoff note to lock in procuring cause.
+            {/* Right form */}
+            <form className="cm-card cm-form" onSubmit={onSubmit}>
+              <div className="cm-fields">
+                <input
+                  className="cm-input"
+                  name="refName"
+                  value={f.refName}
+                  onChange={onChange}
+                  placeholder="Name of Licensee Referring Client"
+                  required
+                />
+                <input
+                  className="cm-input"
+                  name="refPhone"
+                  value={f.refPhone}
+                  onChange={onChange}
+                  placeholder="Telephone of Licensee Referring Client"
+                />
+                <input
+                  className="cm-input"
+                  name="refLicense"
+                  value={f.refLicense}
+                  onChange={onChange}
+                  placeholder="Nevada Real Estate License Number"
+                />
+                <input
+                  className="cm-input"
+                  name="clientName"
+                  value={f.clientName}
+                  onChange={onChange}
+                  placeholder="Name of Potential Client Being Referred"
+                  required
+                />
+                <input
+                  className="cm-input"
+                  name="clientPhone"
+                  value={f.clientPhone}
+                  onChange={onChange}
+                  placeholder="Telephone / Email of Client"
+                />
+                <textarea
+                  className="cm-input cm-textarea"
+                  name="notes"
+                  value={f.notes}
+                  onChange={onChange}
+                  placeholder="Brief Description"
+                  rows="3"
+                />
+              </div>
+              <button className="btn-primary w-100" type="submit">Send</button>
+            </form>
           </div>
-
-          <h2>What You’ll Need</h2>
-          <ul>
-            <li>Client name & contact details</li>
-            <li>Property / area or builder info</li>
-            <li>Any timelines or special notes</li>
-          </ul>
-        </article>
-
-        <aside className="mb-side">
-          <div className="mb-card">
-            <h2>Start a Referral</h2>
-            <p>We’ll send you a DocuSign referral form.</p>
-            <a href="/members/request-form" className="btn-primary">Request Form</a>
-          </div>
-        </aside>
+        </div>
       </section>
-    </div>
+
+      {/* BAND: MEMBER DASHBOARD */}
+      <section className="cm-band cm-band-dark">
+        <div className="container band-grid">
+          <div className="cm-card cm-img">
+            <img src="/assets/members/dashboard.png" alt="Member dashboard" />
+          </div>
+
+          {/* NOTE: 'light' makes this a white card on the dark band */}
+          <div className="cm-card cm-band-card light">
+            <h3>Access the Member Dashboard</h3>
+            <p>
+              Existing licensees can access all pertinent brokerage information within the
+              dashboard.
+            </p>
+            <a
+              className="btn-primary"
+              href="https://your-dashboard-url.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open Dashboard
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* BAND: NV LICENSE PORTAL */}
+      <section className="cm-band cm-band-dark nv-portal">
+          <div className="container band-grid">
+          <div className="cm-card cm-img">
+            <img src="/assets/members/nvseal.png" alt="Nevada seal" />
+          </div>
+
+          <div className="cm-card cm-band-card light">
+            <h3>Nevada Real Estate License Portal</h3>
+            <p>
+              Current licensees can view the status of their Nevada real estate license via the
+              state’s online portal.
+            </p>
+            <a
+              className="btn-primary"
+              href="https://red.prod.secure.nv.gov/Lookup/LicenseLookup.aspx"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit Portal
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+    </main>
   );
 }
