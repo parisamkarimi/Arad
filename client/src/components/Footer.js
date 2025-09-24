@@ -43,7 +43,7 @@ const Footer = () => {
         <p>
           We respect your privacy and are committed to protecting your personal information. Any data collected will
           only be used to improve our services and will never be shared without your consent. For full details,
-          including how we handle cookies, user data, and third-party services, please contact us at info@akibatterymaterials.com.
+          including how we handle cookies, user data, and third-party services, please contact us at kamran@khosravi.com
         </p>
       </Modal>
 
@@ -51,7 +51,7 @@ const Footer = () => {
       <Modal isOpen={showTerms} onClose={() => setShowTerms(false)} title="Terms of Service">
         <p>
           By using our website, you agree to our terms of use. You may not misuse the content or services provided.
-          Aki Battery Materials reserves the right to modify or terminate services at any time. Your continued use
+          ARAD  reserves the right to modify or terminate services at any time. Your continued use
           constitutes acceptance of these terms. Please review them regularly for updates.
         </p>
       </Modal>

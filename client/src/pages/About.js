@@ -51,66 +51,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="values-section">
-        <div className="section-container">
-          <h2 className="section-title">Our Values</h2>
-          <div className="values-grid">
-            <div className="value-card">
-              <div className="value-icon">🌎</div>
-              <h3>Environmental Stewardship</h3>
-              <p>Minimizing mining impacts through responsible battery recycling.</p>
-            </div>
-            <div className="value-card">
-              <div className="value-icon">🤝</div>
-              <h3>Indigenous Partnership</h3>
-              <p>Empowering economic participation through majority First Nations ownership.</p>
-            </div>
-            <div className="value-card">
-              <div className="value-icon">♻️</div>
-              <h3>Circular Solutions</h3>
-              <p>Supporting a closed-loop battery supply chain for Canada.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-            {/* Team Section */}
-      <section className="team-section">
-        <div className="section-container">
-          <h2 className="section-title">Our Team</h2>
-          <div className="team-category">
-            <h3 className="team-subtitle">Management Team</h3>
-            <div className="team-grid">
-              <div className="team-member-card">
-                <img src="assets/team/Reggie George.jpeg" alt="John Doe" className="team-photo" />
-                <h4>Reggie George</h4>
-                <p>President</p>
-              </div>
-              <div className="team-member-card">
-                <img src="assets/team/Andre Marais.jpeg" alt="Lisa Moore" className="team-photo" />
-                <h4>Andre Marais</h4>
-                <p>Director, Strategy and Corporate Development</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="team-category">
-            <h3 className="team-subtitle">Advisory Team</h3>
-            <div className="team-grid">
-              <div className="team-member-card">
-                <img src="assets/team/George Puvvada.jpeg" alt="Robert Taylor" className="team-photo" />
-                <h4>Dr. George Puvvada,P.Eng., PMP, PhD</h4>
-                <p>Vice President, Metallurgy and Technology, Electra Battery Materials</p>
-              </div>
-              <div className="team-member-card">
-                <img src="assets/team/Michael Insulan.jpeg" alt="Maya Chen" className="team-photo" />
-                <h4>Michael Insulan, PhD</h4>
-                <p>Vice President, Commercial, Electra Battery Materials</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </div>
   );

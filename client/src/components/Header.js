@@ -106,11 +106,9 @@ export default function Header() {
 
           <div className="dropdown-menu">
             <button className="dropdown-item" onClick={() => go("/join")}>Join Now</button>
-            <button className="dropdown-item" onClick={() => go("/non-mls/practicing")}>Practicing Real Estate</button>
             <button className="dropdown-item" onClick={() => go("/non-mls/roi")}>Improve Licensing ROI</button>
-            <button className="dropdown-item" onClick={() => go("/non-mls/free-broker")}>MLS Free Broker</button>
+            <button className="dropdown-item" onClick={() => go("/non-mls/free-broker")}>Brokerage Fees</button>
             <button className="dropdown-item" onClick={() => go("/non-mls/referral-fees")}>Highest Referral Fees PAID</button>
-            <button className="dropdown-item" onClick={() => go("/non-mls/brokerage-fees")}>Brokerage Fees</button>
             <button className="dropdown-item" onClick={() => go("/non-mls/commission-payouts")}>Commission Payouts</button>
           </div>
         </div>

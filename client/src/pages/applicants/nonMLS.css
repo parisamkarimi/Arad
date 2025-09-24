@@ -1,0 +1,108 @@
+:root{
+  --navy:#113b74;
+  --navy-2:#224c95;
+  --ink:#203354;
+  --muted:#6e83a3;
+
+  --bg:#f6f8fc;
+  --card:#ffffff;
+  --border:#e6edf7;
+
+  --r:16px;
+  --shadow:0 16px 36px rgba(16,34,60,.12);
+}
+
+.container{ max-width:1160px; margin:0 auto; padding:0 24px; }
+
+/* HERO (full-bleed) */
+.pwm-hero{
+  color:#fff;
+  background:
+    linear-gradient(180deg, rgba(17,59,116,.80), rgba(17,59,116,.80)),
+    var(--pwm-hero, none) center/cover no-repeat,
+    #113b74;
+  padding: 40px 0 36px;
+
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  min-height: clamp(180px, 26vw, 320px);
+  display:flex; align-items:flex-end;
+}
+.pwm-hero h1{
+  color:#fff;
+  margin: 7pc;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+}
+
+/* BODY */
+.pwm-body{ background:#fff; padding: 24px 0 48px; }
+.pwm-grid{
+  display:grid; gap: 24px;
+  grid-template-columns: 1.6fr 1fr;
+}
+@media (max-width: 980px){
+  .pwm-grid{ grid-template-columns: 1fr; }
+}
+
+/* LEFT */
+.pwm-content{ color:#2f4772; }
+.pwm-block + .pwm-block{ margin-top: 18px; }
+.pwm-block h3{ color:#113b74; margin: 0 0 6px; }
+.pwm-block h4{ color:#224c95; margin: 12px 0 6px; }
+.pwm-block p{ line-height: 1.7; }
+.pwm-block a{ color:#1e56c0; text-decoration: underline; }
+.pwm-block a:hover{ text-decoration: none; }
+.pwm-note{
+  background:#f5f8ff;
+  border:1px solid #dfe7fb;
+  color:#0f2b5e;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 8px;
+}
+
+/* RIGHT (FORM) */
+.pwm-form{ position:relative; }
+.pwm-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+.pwm-card h3{
+  margin: 0 0 8px;
+  color:#113b74;
+}
+
+.pwm-field{ display:flex; flex-direction:column; gap:6px; margin:10px 0; }
+.pwm-field > span{ color:#294a74; font-size:.95rem; }
+
+.pwm-input{
+  background:#fff;
+  border:1px solid #dbe5f6;
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+  color:#0f2b5e;
+  transition: box-shadow .18s ease, border-color .18s ease;
+}
+.pwm-input:focus{
+  border-color:#2c61d4;
+  box-shadow: 0 0 0 4px rgba(44,97,212,.12);
+}
+.pwm-textarea{ resize: vertical; min-height:120px; }
+
+/* Button */
+.pwm-btn{
+  appearance:none;
+  border:0; border-radius: 10px;
+  background:#224c95; color:#fff; font-weight:800;
+  padding: 12px 16px;
+  box-shadow: 0 12px 24px rgba(34,76,149,.22);
+  cursor:pointer;
+  width: 100%;
+}
+.pwm-btn:hover{ filter: brightness(1.06); }

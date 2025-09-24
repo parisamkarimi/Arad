@@ -17,7 +17,7 @@ import NewLicenseForm from "./pages/join/NewLicenseForm";
 import TransferForm from "./pages/join/TransferForm";
 import ContactAcknowledgement from "./pages/join/ContactAcknowledgement";
 
-import Practicing from "./pages/nonmls/Practicing";
+
 import ROI from "./pages/nonmls/ROI";
 import FreeBroker from "./pages/nonmls/FreeBroker";
 import ReferralFees from "./pages/nonmls/ReferralFees";
@@ -53,7 +53,7 @@ function App() {
             <Route path="/join/transfer" element={<TransferForm />} />
             <Route path="/contact-acknowledgement" element={<ContactAcknowledgement />} />
 
-            <Route path="/non-mls/practicing" element={<Practicing />} />
+            
             <Route path="/non-mls/roi" element={<ROI />} />
             <Route path="/non-mls/free-broker" element={<FreeBroker />} />
             <Route path="/non-mls/referral-fees" element={<ReferralFees />} />
