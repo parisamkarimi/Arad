@@ -1,24 +1,17 @@
-# dependencies
-node_modules/
-**/node_modules/
-
-# CRA build output
-client/build/
-build/
-dist/
-
-# env files (do not commit)
+# env
 .env
 client/.env
 **/.env
 
+# dependencies
+node_modules/
+**/node_modules/
+
+# build
+client/build/
+build/
+dist/
+
 # caches
 **/.cache/
 **/.eslintcache
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# OS files
-.DS_Store
-Thumbs.db
