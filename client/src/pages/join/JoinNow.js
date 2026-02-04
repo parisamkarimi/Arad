@@ -27,7 +27,7 @@ export default function JoinNow() {
           <article className="jn-benefit-card" style={{ "--bg": 'url("/assets/join/benefit3.jpg")' }}>
             <div className="jn-benefit-body">
               <h3>All-Digital Brokerage</h3>
-              <p>DocuSign paperwork + fast eCheck payouts = zero hassle.</p>
+              <p>DocuSign paperwork + Direct deposit = zero hassle.</p>
             </div>
           </article>
         </div>
@@ -55,9 +55,9 @@ export default function JoinNow() {
           </p>
 
           <ul className="jn-list">
-            <li>Digital onboarding via DocuSign</li>
+            
             <li>Brokerage support & standardized forms</li>
-            <li>Fast eCheck payments</li>
+            <li>Direct deposit payments</li>
           </ul>
 
           <div className="jn-actions">
@@ -80,7 +80,6 @@ export default function JoinNow() {
           </p>
 
           <ul className="jn-list">
-            <li>DocuSign transfer forms</li>
             <li>Guided, fast activation</li>
             <li>Referral & non-MLS opportunities</li>
           </ul>

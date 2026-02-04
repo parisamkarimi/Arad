@@ -3,6 +3,8 @@ import "./Pages.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faXTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
+
+
 export default function Contact() {
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
@@ -66,32 +68,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="social-links">
-            <a
-              href="https://www.facebook.com/share/1C3UHsv5pw/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-            >
-              <FontAwesomeIcon icon={faFacebookF} className="social-icon" />
-            </a>
-            <a
-              href="https://x.com/akirecycle?s=35"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-            >
-              <FontAwesomeIcon icon={faXTwitter} className="social-icon" />
-            </a>
-              <a
-                href="https://www.linkedin.com/company/akirecycle/?viewAsMember=true "
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                <FontAwesomeIcon icon={faLinkedinIn} className="social-icon" />
-              </a>
-          </div>
+          
         </div>
 
         <form className="contact-form" onSubmit={handleSubmit}>

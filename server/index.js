@@ -5,12 +5,12 @@ const cors = require("cors");
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://aki-company.vercel.app",
-  "https://aki-company-nnvv.vercel.app",
-  "https://akirecycling.com"
-];
+//const allowedOrigins = [
+ // "http://localhost:3000",
+  //"https://aki-company.vercel.app",
+  //"https://aki-company-nnvv.vercel.app",
+  //"https://akirecycling.com"
+//];
 
 // Middleware to parse JSON bodies
 app.use(express.json());

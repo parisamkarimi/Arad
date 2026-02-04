@@ -7,7 +7,7 @@ const Home = () => {
       {/* Hero Section */}
     <section className="hero">
       <div className="hero-content">
-        <h1>Join Nevada's Largest Non MLS Broker </h1>
+        <h1>Join Nevada's Best Non MLS Brokerage </h1>
         <p className="hero-subtitle">
           
             Keep your Nevada Real Estate license active without MLS fees, association dues or Realtor expenses
@@ -20,7 +20,7 @@ const Home = () => {
     {/* Verified Impact Metrics */}
     <section className="metrics-section">
       <h3>Are you a new licensee, who's ready to get started? Or a transferring licensee looking for a fresh start?</h3>
-      <a>Hang Your License with Key Advantage
+      <a>Hang Your License with ARAD
 Activate your Nevada license, earn commissions, and avoid MLS fees. We handle all paperwork through DocuSign and provide referral and non-MLS options with full brokerage support—simple, fast, and affordable.
 <br></br>
 <br></br>
@@ -30,15 +30,15 @@ Activate your Nevada license, earn commissions, and avoid MLS fees. We handle al
       <div className="metrics-grid">
         <div className="metric-item edge-highlight" style={{ "--edge-color": "#33A18F" }}>
           <div className="metric-label">Current Members</div>
-          <p className="metric-description">Key Advantage LLC operates one of Nevada’s largest real estate referral networks. With Key Advantage NOW, you can practice real estate without MLS membership, maintain traditional representation, and earn unmatched referral fees. Written referrals are quickly verified, ensuring you’re recognized as the procuring cause.</p>
+          <p className="metric-description">ARAD LLC operates one of Nevada’s best real estate referral networks. With ARAD NOW, you can practice real estate without MLS membership, maintain traditional representation, and earn unmatched referral fees. Written referrals are quickly verified, ensuring you’re recognized as the procuring cause.</p>
         </div>
         <div className="metric-item edge-highlight" style={{ "--edge-color": "#496D89" }}>
           <div className="metric-label">New Licensees</div>
-          <p className="metric-description">Key Advantage LLC is an ideal brokerage for new licensees, offering affordable plans to establish and maintain a Nevada real estate license. Avoid high startup and maintenance costs while practicing referral and non-MLS real estate with your active license.</p>
+          <p className="metric-description">ARAD LLC is an ideal brokerage for new licensees, offering affordable plans to establish and maintain a Nevada real estate license. Avoid high startup and maintenance costs while practicing referral and non-MLS real estate with your active license.</p>
         </div>
         <div className="metric-item edge-highlight" style={{ "--edge-color": "#A6645D" }}>
           <div className="metric-label">Transferring Licensees</div>
-          <p className="metric-description">Key Advantage LLC is a top choice for licensees seeking a cost-effective way to maintain their Nevada real estate license. The brokerage offers both referral placement and non-MLS practice options, with simple steps to transfer your license and get started.</p>
+          <p className="metric-description">ARAD LLC is a top choice for licensees seeking a cost-effective way to maintain their Nevada real estate license. The brokerage offers both referral placement and non-MLS practice options, with simple steps to transfer your license and get started.</p>
         </div>
       </div>
     </section>
@@ -83,7 +83,7 @@ Activate your Nevada license, earn commissions, and avoid MLS fees. We handle al
       <div className="step-number-home">3</div>
       <h3>Modern Digital Brokerage</h3>
       <p><li>Seamless paperwork with DocuSign</li>
-      <li>Fast payments with eChecks</li></p>
+      <li>Fast payments </li></p>
     </div>
   </div>
 </section>

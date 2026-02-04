@@ -1,152 +1,235 @@
 :root{
   --navy:#113b74;
   --navy-2:#224c95;
-  --ink:#203354;
-  --muted:#6e83a3;
+  --ink:#1f2f4a;
+  --muted:#6b7fa1;
 
   --bg:#f6f8fc;
   --card:#ffffff;
   --border:#e6edf7;
 
-  --r:16px;
+  --r:18px;
   --shadow:0 16px 36px rgba(16,34,60,.12);
 }
 
-.container{ max-width:1160px; margin:0 auto; padding:0 24px; }
+/* Layout container used inside sections */
+.container{
+  max-width:1160px;
+  margin:0 auto;
+  padding:0 24px;
+}
 
-/* HERO */
-/* HERO */
+/* Page background (optional) */
+.nl-page{
+  background: var(--bg);
+}
+
+/* =========================
+   HERO (FULL WIDTH LIKE KEYNV)
+   ========================= */
 .nl-hero{
-  /* full-bleed background image with dark overlay */
-  background:
-    linear-gradient(180deg, rgba(17,59,116,.78), rgba(17,59,116,.78)),
-    var(--nl-hero, none) center / cover no-repeat,
-    #113b74;
-
-  /* make the section span the viewport width even if it's inside a centered parent */
   width: 100vw;
-  margin-left: calc(100% - 100vw);
-  margin-right: calc(100% - 100vw);
-
-  /* nice height + spacing */
-  min-height: clamp(100px, 7vw, 360px);
-  padding: 42px 0 26px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
+.nl-hero-inner{
+  position: relative;
+  z-index: 1;
+}
 
-/* Title color (bump specificity in case another stylesheet wins) */
-.nl-hero h1{
-  color: #faf9f7 !important;  /* change to your brand color */
-  margin: 0 0 12px 0;
-  font-size: clamp(1.9rem, 4vw, 2.4rem);
+.nl-title{
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
+  letter-spacing: .2px;
+  text-shadow: 0 12px 28px rgba(0,0,0,.35);
 }
-
 
 .nl-intro{
-  max-width: 990px;
-  color: #fff;
-  line-height:1.65;
-  margin:0;
+  margin: 0;
+  max-width: 860px;
+  color: rgba(255,255,255,.92);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-shadow: 0 10px 22px rgba(0,0,0,.32);
 }
 
-/* CTA BAND */
+/* =========================
+   CTA BAND
+   ========================= */
 .nl-cta{
   background:#fff;
   border-top:1px solid #e9eef8;
   border-bottom:1px solid #e9eef8;
   text-align:center;
-  padding: 18px 0;
+  padding: 22px 0;
 }
+
 .nl-cta-title{
-  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
-  color:#244e9a;
-  margin-bottom: 6px;
+  font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+  color:#234b92;
+  margin: 0 0 8px;
 }
+
 .nl-cta-link{
   display:inline-block;
-  font-weight:900;
-  font-size: clamp(1.2rem, 3vw, 1.7rem);
-  letter-spacing:.2px;
+  font-weight: 900;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  letter-spacing: .3px;
   color:#0d6efd;
   text-decoration:none;
 }
-.nl-cta-link:hover{ text-decoration:underline; }
 
-/* EXPLAINER */
-.nl-explain{ background:#fff; padding:24px 0 6px; text-align:center; }
+.nl-cta-link:hover{
+  text-decoration: underline;
+}
+
+/* =========================
+   EXPLAINER
+   ========================= */
+.nl-explain{
+  background:#fff;
+  padding: 28px 0 10px;
+  text-align:center;
+}
+
 .nl-video-link{
   display:inline-block;
-  font-size: clamp(1rem, 2.3vw, 1.25rem);
+  font-size: 1.15rem;
   color:#1e56c0;
-  text-decoration:underline;
-  margin-bottom: 10px;
-}
-.nl-video-link:hover{ text-decoration:none; }
-.nl-h2{
-  margin: 4px 0 8px;
-  color:#203a6b;
-  font-size: clamp(1.2rem, 2.8vw, 1.6rem);
-}
-.nl-copy{
-  max-width: 880px;
-  margin: 0 auto;
-  color:#2f4772;
-  line-height:1.7;
+  text-decoration: underline;
+  margin-bottom: 12px;
 }
 
-/* DOWNLOADS */
-.nl-downloads{ background:#fff; padding: 10px 0 40px; }
-.nl-grid{
+.nl-video-link:hover{
+  text-decoration: none;
+}
+
+.nl-h2{
+  margin: 2px 0 10px;
+  color:#1f355f;
+  font-size: clamp(1.3rem, 2.7vw, 1.7rem);
+  font-weight: 800;
+}
+
+.nl-copy{
+  max-width: 900px;
+  margin: 0 auto;
+  color:#2e456f;
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+/* =========================
+   DOWNLOADS SECTION
+   ========================= */
+.nl-downloads{
+  background:#fff;
+  padding: 18px 0 44px;
+}
+
+/* Grid: 1 col on mobile, 2 col on desktop */
+.nl-grid-2{
   display:grid;
   grid-template-columns: 1fr;
-  gap: 16px;
-  align-items:start;
+  gap: 22px;
+  align-items: stretch;
 }
 
-.dl-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius: var(--r);
-  box-shadow: var(--shadow);
-  padding: 18px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  max-width: 520px;
-}
-.dl-card.wide{ max-width: 640px; }
-.dl-top h3{
-  margin:4px 0 4px;
-  color:#123a83;
-  font-size: 1.05rem;
-}
-.dl-sub{ color:#6b7fa1; margin:0; }
-
-.pdf-badge{
-  display:inline-grid; place-items:center;
-  width:42px; height:42px; border-radius:10px;
-  background:#ff4b4b; color:#fff; font-weight:900; letter-spacing:.5px;
-  box-shadow:0 4px 12px rgba(255,75,75,.25);
-}
-
-.dl-btn{
-  align-self:flex-start;
-  background:#224c95; color:#fff; text-decoration:none; font-weight:800;
-  padding:10px 14px; border-radius:10px;
-  box-shadow:0 12px 24px rgba(34,76,149,.22);
-}
-.dl-btn:hover{ filter:brightness(1.06); }
-
-.nl-note{
-  color:#6e83a3;
-  padding:6px 2px;
-}
-
-/* UTIL */
-@media (min-width:900px){
-  .nl-grid{
-    grid-template-columns: repeat(2, minmax(280px, 1fr));
+@media (min-width: 900px){
+  .nl-grid-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Card */
+.dl-card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: 0 12px 28px rgba(16,34,60,.10);
+  padding: 18px;
+  display:flex;
+  flex-direction: column;
+  min-height: 190px;            /* same height cards */
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.dl-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(34,76,149,.35);
+  box-shadow: 0 18px 44px rgba(16,34,60,.14);
+}
+
+/* Card header row */
+.dl-top{
+  display:flex;
+  gap: 12px;
+  align-items:flex-start;
+}
+
+/* Badge */
+.pdf-badge{
+  flex: 0 0 auto;
+  display:grid;
+  place-items:center;
+  width:46px;
+  height:46px;
+  border-radius: 12px;
+  background:#ff4b4b;
+  color:#fff;
+  font-weight: 900;
+  letter-spacing: .5px;
+  box-shadow: 0 10px 18px rgba(255,75,75,.22);
+}
+
+/* Text area */
+.dl-text h3{
+  margin: 2px 0 6px;
+  color:#113b74;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.dl-sub{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: .98rem;
+}
+
+/* Button pinned at bottom to align both */
+.dl-btn{
+  margin-top: auto;            /* important: keeps button aligned */
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #224c95, #15366f);
+  color:#fff;
+  font-weight: 800;
+  text-decoration:none;
+  box-shadow: 0 14px 26px rgba(34,76,149,.20);
+  width: fit-content;
+}
+
+.dl-btn:hover{
+  filter: brightness(1.06);
+}
+
+/* Note */
+.nl-note{
+  margin-top: 14px;
+  color:#6e83a3;
+  line-height: 1.6;
+  font-size: .98rem;
+}
+
 

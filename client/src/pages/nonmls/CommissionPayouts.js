@@ -89,13 +89,13 @@ export default function CommissionPayouts() {
           <p>
             Put your real-estate license to work with one of Nevada’s most flexible non-MLS and
             referral networks. Whether you have years of production or you’re easing back in,
-            you’ll enjoy digital paperwork, clear timelines, and fast eCheck payouts.
+            you’ll enjoy digital paperwork, clear timelines.
           </p>
+        <div className="cp-actions">
+          
+          <NavLink className="btn-outline" to="/members/request-form">Ask a Question</NavLink>
+       </div>
 
-          <div className="cp-actions">
-            <NavLink className="btn-primary" to="/join-now">Join Now</NavLink>
-            <NavLink className="btn-outline" to="/members/request-form">Ask a Question</NavLink>
-          </div>
         </div>
       </section>
     </main>

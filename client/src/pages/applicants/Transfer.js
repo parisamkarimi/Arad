@@ -23,7 +23,7 @@ export default function Transfer() {
           <h1>How to Transfer Your License</h1>
           <p className="sub">
             Moving your license to ARAD is simple and fully digital. We issue your brokerage
-            paperwork via DocuSign, prepare the state transfer documents, and coordinate
+            paperwork via email, prepare the state transfer documents, and coordinate
             mailing to the Division. You’ll receive confirmation and a copy for your records.
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function Transfer() {
           <h2 className="tl-h2">What to Expect</h2>
           <p className="tl-copy">
             If you are transferring from another brokerage, you’ll complete required state forms
-            (broker signature included) and your ARAD association forms with <strong>DocuSign</strong>.
+            (broker signature included) and your ARAD association forms with <strong>Email</strong>.
             Transfers are completed via <strong>US Mail</strong> to the Division; you’ll be emailed
             a copy of the mailed state form for your records.
           </p>
@@ -63,7 +63,7 @@ export default function Transfer() {
             <h2>Step-by-Step</h2>
             <ol className="tl-steps">
               <li>Submit your request to start the transfer with ARAD.</li>
-              <li>Complete brokerage agreements via DocuSign (digital signatures).</li>
+              <li>Complete brokerage agreements via email.</li>
               <li>Provide key info: license number, current brokerage, and mailing address.</li>
               <li>ARAD prepares state transfer paperwork and mails it to the Division.</li>
               <li>
@@ -89,7 +89,7 @@ export default function Transfer() {
               <li>Current brokerage name</li>
               <li>Legal name & contact info</li>
               <li>Mailing address for state correspondence</li>
-              <li>Signed ARAD association docs (DocuSign)</li>
+            {/* <li>Signed ARAD association docs (DocuSign)</li> */}
             </ul>
 
             <div className="tl-btns">
@@ -106,7 +106,7 @@ export default function Transfer() {
           <article className="tl-card">
             <h3>Typical Timeline</h3>
             <ul className="tl-timeline">
-              <li><span>Same day</span> DocuSign brokerage agreements</li>
+             { /*<li><span>Same day</span> DocuSign brokerage agreements</li>*/}
               <li><span>1 business day</span> ARAD prepares & mails state transfer paperwork</li>
               <li><span>3–5 business days</span> Division posts your updated brokerage</li>
             </ul>

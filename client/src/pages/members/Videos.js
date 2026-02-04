@@ -6,7 +6,7 @@ export default function Videos() {
     <div className="mb-wrap">
       <section className="mb-hero">
         <h1>Video</h1>
-        <p>Short walkthroughs on common member topics. Replace the demo URLs with your own.</p>
+        
       </section>
 
       <section className="mb-grid">
@@ -17,7 +17,7 @@ export default function Videos() {
               <div style={{position:"relative", paddingTop:"56.25%"}}>
                 <iframe
                   title="Onboarding"
-                  src="https://www.youtube.com/embed/ysz5S6PUM-U"
+                  //src="https://www.youtube.com/embed/ysz5S6PUM-U"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   style={{position:"absolute", inset:0, width:"100%", height:"100%", border:0, borderRadius:"16px"}}
@@ -29,7 +29,7 @@ export default function Videos() {
               <div style={{position:"relative", paddingTop:"56.25%"}}>
                 <iframe
                   title="Submitting a Referral"
-                  src="https://www.youtube.com/embed/ScMzIvxBSi4"
+                  //src="https://www.youtube.com/embed/ScMzIvxBSi4"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   style={{position:"absolute", inset:0, width:"100%", height:"100%", border:0, borderRadius:"16px"}}
