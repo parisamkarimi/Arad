@@ -1,177 +1,231 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
-require("dotenv").config();
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 
-//const allowedOrigins = [
- // "http://localhost:3000",
-  //"https://aki-company.vercel.app",
-  //"https://aki-company-nnvv.vercel.app",
-  //"https://akirecycling.com"
-//];
+/* -------------------------
+   Config
+-------------------------- */
 
-// Middleware to parse JSON bodies
-app.use(express.json());
+// Where emails go (ARAD inbox)
+const TO_EMAIL = process.env.TO_EMAIL || "kamran@khosravi.com";
 
-const corsOptions = {
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
+// Sender email (must be verified in SendGrid)
+const FROM_EMAIL = process.env.FROM_EMAIL || process.env.EMAIL_USER;
+
+// Allowed origins for CORS (comma-separated in .env)
+const allowedOrigins = (process.env.CORS_ORIGINS || "http://localhost:3000")
+  .split(",")
+  .map((o) => o.trim())
+  .filter(Boolean);
+
+/* -------------------------
+   Middleware
+-------------------------- */
+
+app.use(express.json({ limit: "2mb" }));
+app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      // allow same-origin, Postman, curl
+      if (!origin) return cb(null, true);
+
+      if (allowedOrigins.includes(origin)) return cb(null, true);
+
+      return cb(new Error(`CORS blocked for origin: ${origin}`));
+    },
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
+/* -------------------------
+   Email Transport (SendGrid)
+-------------------------- */
+
+if (!process.env.SENDGRID_API_KEY) {
+  console.warn("⚠️ SENDGRID_API_KEY is missing. Emails will fail until you add it to server/.env");
+}
+
+const transporter = nodemailer.createTransport({
+  host: "smtp.sendgrid.net",
+  port: 587,
+  secure: false, // STARTTLS
+  auth: {
+    user: "apikey",
+    pass: process.env.SENDGRID_API_KEY,
+  },
+});
+
+/* Helper: safe HTML */
+const escapeHtml = (str = "") =>
+  String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+const buildHtml = (title, fields = {}) => {
+  const rows = Object.entries(fields)
+    .map(
+      ([k, v]) => `
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid #e9eef8;color:#1f2f4a;font-weight:700;width:220px;">
+            ${escapeHtml(k)}
+          </td>
+          <td style="padding:10px 12px;border-bottom:1px solid #e9eef8;color:#2f4772;">
+            ${escapeHtml(v ?? "N/A")}
+          </td>
+        </tr>
+      `
+    )
+    .join("");
+
+  return `
+    <div style="font-family:Segoe UI, Tahoma, Arial, sans-serif;background:#f6f8fc;padding:24px;">
+      <div style="max-width:720px;margin:0 auto;background:#ffffff;border:1px solid #e6edf7;border-radius:14px;overflow:hidden;">
+        <div style="background:linear-gradient(90deg,#0f2b5e,#224c95);padding:16px 18px;color:#fff;">
+          <h2 style="margin:0;font-size:18px;">${escapeHtml(title)}</h2>
+          <p style="margin:6px 0 0;opacity:.9;font-size:13px;">ARAD Website Submission</p>
+        </div>
+        <div style="padding:14px 18px;">
+          <table style="width:100%;border-collapse:collapse;">
+            ${rows}
+          </table>
+          <p style="margin:14px 0 0;color:#6e83a3;font-size:12px;">
+            This message was generated from the ARAD website forms.
+          </p>
+        </div>
+      </div>
+    </div>
+  `;
 };
 
-app.use(cors(corsOptions));
+async function sendToAradInbox({ subject, replyTo, fields }) {
+  const mailOptions = {
+    from: FROM_EMAIL,
+    to: TO_EMAIL,
+    replyTo: replyTo || FROM_EMAIL,
+    subject,
+    text: Object.entries(fields)
+      .map(([k, v]) => `${k}: ${v ?? "N/A"}`)
+      .join("\n"),
+    html: buildHtml(subject, fields),
+  };
 
-// Test endpoint to verify server is working
+  return transporter.sendMail(mailOptions);
+}
+
+/* -------------------------
+   Health / Root
+-------------------------- */
+
 app.get("/api/health", (req, res) => {
-  res.json({ status: "OK", message: "Server is running" });
+  res.json({
+    status: "OK",
+    message: "ARAD server is running",
+    allowedOrigins,
+  });
 });
 
-app.get('/', (req, res) => {
-  res.send('Server is up and running!');
+app.get("/", (req, res) => {
+  res.send("ARAD Server is up and running!");
 });
 
-// Contact endpoint
+/* -------------------------
+   CONTACT FORM
+   POST /api/contact
+-------------------------- */
+
 app.post("/api/contact", async (req, res) => {
-  console.log("Contact request received:", req.body);
-
   const { name, email, subject, message } = req.body;
 
-  // Validate all required fields
   if (!name || !email || !subject || !message) {
-    console.log("Missing required field(s)");
-    return res.status(400).json({ 
-      error: "All fields are required",
-      received: { name, email, subject, message }
-    });
+    return res.status(400).json({ error: "All fields are required." });
   }
 
-  // Email configuration
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.sendgrid.net',
-    port: 465,
-    secure: true,
-    auth: {
-      user: 'apikey',
-      pass: process.env.SENDGRID_API_KEY
-    }
-  });
-
-  transporter.verify(function(error, success) {
-    if (error) {
-      console.log('SMTP connection error:', error);
-    } else {
-      console.log('Server is ready to take our messages');
-    }
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER, // Use your email as sender
-    to: process.env.EMAIL_USER,   // Send to yourself
-    replyTo: email,              // Allow reply to sender
-    subject: `New Contact: ${subject}`,
-    text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    html: `
-      <h3>New Contact Form Submission</h3>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Subject:</strong> ${subject}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message.replace(/\n/g, '<br>')}</p>
-    `
-  };
-
   try {
-    await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully");
-    res.status(200).json({ success: true, message: "Email sent successfully!" });
-  } catch (error) {
-    console.error("Email send error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Failed to send email",
-      error: error.message 
+    await sendToAradInbox({
+      subject: `ARAD Contact: ${subject}`,
+      replyTo: email,
+      fields: {
+        "Name": name,
+        "Email": email,
+        "Subject": subject,
+        "Message": message,
+      },
     });
+
+    return res.status(200).json({ success: true, message: "Message sent successfully!" });
+  } catch (err) {
+    console.error("Contact email failed:", err?.message || err);
+    return res.status(500).json({ success: false, message: "Failed to send email." });
   }
 });
 
+/* -------------------------
+   BUSINESS / PARTNERSHIP INQUIRY
+   POST /api/partnership
+   (ARAD real estate version)
+-------------------------- */
 
-// Partnership Inquiry
 app.post("/api/partnership", async (req, res) => {
-  const { fullName, email, phone, organization, industry, website, address, partnershipType, volume, goals, message } = req.body;
+  const {
+    fullName,
+    email,
+    phone,
+    organization,
+    website,
+    address,
+    partnershipType,
+    goals,
+    message,
+  } = req.body;
 
   if (!fullName || !email) {
-    return res.status(400).json({ message: "Please fill in all required fields." });
+    return res.status(400).json({ message: "Full name and email are required." });
   }
 
-  const formattedMessage = `
-New Partnership Inquiry from AKI Website:
-
-Name: ${fullName}
-Email: ${email}
-Phone: ${phone || "N/A"}
-Organization: ${organization || "N/A"}
-Industry: ${industry || "N/A"}
-Website: ${website || "N/A"}
-Address: ${address || "N/A"}
-Partnership Type: ${partnershipType || "N/A"}
-Battery Volume: ${volume || "N/A"}
-Sustainability Goals: ${goals || "N/A"}
-Message: ${message || "N/A"}
-`;
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
-    subject: `AKI Partnership Inquiry: ${organization}`,
-    text: formattedMessage,
-    replyTo: email,
-    html: `
-      <h3>New Contact Form Submission</h3>
-      <p><strong>Name:</strong> ${fullName}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone || "N/A"}</p>
-      <p><strong>Organization:</strong> ${organization || "N/A"}</p>
-      <p><strong>Industry:</strong> ${industry || "N/A"}</p>
-      <p><strong>Website:</strong> ${website || "N/A"}</p>
-      <p><strong>Address:</strong> ${address || "N/A"}</p>
-      <p><strong>Partnership Type:</strong> ${partnershipType || "N/A"}</p>
-      <p><strong>Battery Volume:</strong> ${volume || "N/A"}</p>
-      <p><strong>Sustainability Goals:</strong> ${goals || "N/A"}</p>
-      <p><strong>Message:</strong> ${message || "N/A"}</p>
-    `
-  };
-
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.sendgrid.net',
-    port: 587,
-    auth: {
-      user: 'apikey',
-      pass: process.env.SENDGRID_API_KEY
-    }
-  });
-
   try {
-    await transporter.sendMail(mailOptions);
-    console.log("Partnership email sent to:", mailOptions.to);
-    res.status(200).json({ message: "Partnership form submitted successfully!" });
+    await sendToAradInbox({
+      subject: `ARAD Partnership Inquiry: ${organization || fullName}`,
+      replyTo: email,
+      fields: {
+        "Full Name": fullName,
+        "Email": email,
+        "Phone": phone,
+        "Organization": organization,
+        "Website": website,
+        "Address": address,
+        "Partnership Type": partnershipType,
+        "Goals": goals,
+        "Message": message,
+      },
+    });
+
+    return res.status(200).json({ success: true, message: "Inquiry submitted successfully!" });
   } catch (err) {
-    console.error("Email send failed:", {
-      error: err.message,
-      mailOptions: {
-        from: mailOptions.from,
-        to: mailOptions.to,
-        subject: mailOptions.subject
-      }
-    });
-    res.status(500).json({ 
-      message: "Failed to submit form",
-      error: process.env.NODE_ENV === 'development' ? err.message : undefined
-    });
+    console.error("Partnership email failed:", err?.message || err);
+    return res.status(500).json({ success: false, message: "Failed to submit form." });
   }
 });
 
-// IMPORTANT: Export the app for Vercel
+/* -------------------------
+   Local run (optional)
+   Keep Vercel export too
+-------------------------- */
+
+// Run locally: node server/index.js
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`✅ ARAD server listening on http://localhost:${PORT}`));
+}
+
+// For Vercel / serverless usage
 module.exports = app;
